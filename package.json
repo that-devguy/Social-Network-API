@@ -1,0 +1,24 @@
+{
+  "name": "social-network-api",
+  "version": "1.0.0",
+  "description": "Social Network API Challenge built with Express.js, MongoDB, and Mongoose ODM.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/that-devguy/Social-Network-API.git"
+  },
+  "author": "that_devguy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/that-devguy/Social-Network-API/issues"
+  },
+  "homepage": "https://github.com/that-devguy/Social-Network-API#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongodb": "^5.5.0",
+    "mongoose": "^7.2.1"
+  }
+}
