@@ -29,10 +29,10 @@ module.exports = {
   // Create a new thought
   createThought(req, res) {
     Thought.create(req.body)
-      .then((thought) => {
+      .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: req.body.user },
-          { $addToSet: { thoughts: thought._id } },
+          { _id: req.body.userId },
+          { $push: { thoughts: _id } },
           { new: true }
         );
       })
@@ -54,11 +54,19 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID exists" })
-          : res.json({
-              message: "Thought deleted successfully 🎉",
-              thought: thought,
-            })
+          : User.findOneAndUpdate(
+              { thoughts: req.params.thoughtId },
+              { $pull: { thoughts: req.params.thoughtId } },
+              { new: true }
+            )
       )
+      .then((user) => {
+        !user
+          ? res.status(404).json({
+              message: "Thought deleted, but no user with that ID exists",
+            })
+          : res.json({ messgae: "Thought deleted successfully 🎉" });
+      })
       .catch((err) => res.status(500).json(err));
   },
   // Update a thought
@@ -66,7 +74,8 @@ module.exports = {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
-      { runValidators: true, new: true }
+      { runValidators: true },
+      { new: true }
     )
       .then((thought) =>
         !thought
