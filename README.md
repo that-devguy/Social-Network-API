@@ -30,7 +30,7 @@ Please follow these steps to install and run the project on your local machine:
 
 1. Install MongoDB
 2. Clone the repository
-3. Install dependencies by opening the cloned repository and run the command `npm install` to install all the dependencies required for the back-end
+3. Run the command `npm install` to install all the dependencies required for the back-end
 4. Create a database and connect it to the [connection.js](/config/connection.js)
 5. Start the application using `node index`
   
