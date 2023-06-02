@@ -90,15 +90,20 @@ module.exports = {
 
   // Delete a reaction
   deleteReaction(req, res) {
-    Thought.findOneAndUpdate({ _id: req.params.thoughtId })
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { reactionId: req.params.reactionId } } },
+      { new: true }
+    )
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID exists" })
           : User.findOneAndUpdate(
               { thoughts: req.params.thoughtId },
-              { $pull: { reaction: req.params.reactionId } },
+              { $pull: { reactions: { reactionId: req.params.reactionId } } },
               { new: true }
-            )
+            ),
+            res.json({ message: "Reaction deleted successfully 🎉"})
       )
       .catch((err) => res.status(500).json(err));
   },
@@ -113,7 +118,10 @@ module.exports = {
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID exists" })
-          : res.json(thought)
+          : res.json({
+              message: "Reaction added successfully 🎉",
+              thought,
+            })
       )
       .catch((err) => {
         console.log(err);
