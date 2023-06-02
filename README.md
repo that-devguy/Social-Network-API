@@ -28,13 +28,17 @@ A social network API built for users to share their thoughts, rect to friends' t
 
 Please follow these steps to install and run the project on your local machine:
 
-Installation instructions coming soon.
+1. Install MongoDB
+2. Clone the repository
+3. Install dependencies by opening the cloned repository and run the command `npm install` to install all the dependencies required for the back-end
+4. Create a database called `social-networkDB` and connect to it using the connnection.js file (seed data coming soon)
+5. Start the application using `node index`
   
 ## Usage
   
 To use this project, follow these steps:
 
-Usage instructions coming in a future update.
+Follow [Walkthrough Demo](https://drive.google.com/file/d/1aCfvLHiIA79vT39lXA3pgpdnKUo4VYxt/view?usp=sharing)
 
 ## Contributing
 
@@ -44,13 +48,39 @@ Contributions are not currently open on this project.
 
 To run tests on this project, follow these steps:
 
-Testing instructions coming in a future update.
+1. Install Insomnia on your local machine
+2. Create http requests for the following:
+    - GET routes for all users and all thoughts
+    - GET routes for a single user and a single thought
+    - POST, PUT, and DELETE routes for users and thoughts
+    - POST AND DELETE routes for a user's friend list
+    - POST AND DELETE routes for reactions to thoughts
+    - **All api routes can be found in [/routes/api](./routes/api/)**
+3. Test your routes (follow [Walkthrough Demo](https://drive.google.com/file/d/1aCfvLHiIA79vT39lXA3pgpdnKUo4VYxt/view?usp=sharing) if needed)
+
+
+```json
+// example data for users
+{
+  "username": "lernantino",
+  "email": "lernantino@gmail.com"
+}
+```
+
+```json
+// example data for thoughts
+{
+  "thoughtText": "Here's a cool thought...",
+  "username": "lernantino",
+  "userId": "5edff358a0fcb779aa7b118b"
+}
+```
   
 ## Project Links
   
-Walkthrough Demo:
+Walkthrough Demo: https://drive.google.com/file/d/1aCfvLHiIA79vT39lXA3pgpdnKUo4VYxt/view?usp=sharing
 
-Github Repository: https://github.com/that-devguy/Social-Network-API
+GitHub Repository: https://github.com/that-devguy/Social-Network-API
 
 ## License
 
