@@ -48,9 +48,9 @@ module.exports = {
         res.status(500).json(err);
       });
   },
-  // Delete a thought
-  deleteThought(req, res) {
-    Thought.findOneAndDelete({ _id: req.params.thoughtId })
+  // Create a reaction
+  createReaction(req, res) {
+    Thought.findOneAndUpdate({ _id: req.params.thoughtId })
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: "No thought with that ID exists" })
@@ -69,8 +69,8 @@ module.exports = {
       })
       .catch((err) => res.status(500).json(err));
   },
-  // Update a thought
-  updateThought(req, res) {
+  // Delete a reaction
+  deleteReaction(req, res) {
     Thought.findOneAndUpdate(
       { _id: req.params.thoughtId },
       { $set: req.body },
@@ -87,4 +87,5 @@ module.exports = {
         res.status(500).json(err);
       });
   },
+  
 };
